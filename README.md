@@ -200,3 +200,24 @@
   - 적용 가능한 부분: 게시글 등록, 회원 등록 시 클라이언트 측에서 넘어온 입력 데이터를 검증
 - 인터셉터를 구현하여 요청과 응답을 가로채고, 처리 전후로 특정 작업을 수행해야 한다.
   - 적용 가능한 부분: Spring Security와 관련된 부분, 쿼리 성능 측정
+
+# 도메인 설계
+
+## 사용자
+
+| 필드명 | 자료형 |
+| ------ | ------ |
+| id     | String |
+| pw     | String |
+| name   | String |
+| phone  | String |
+| email  | String |
+
+## 게시글
+
+| 필드명  | 자료형 |
+| ------- | ------ |
+| title   | String |
+| author  | String |
+| created | Date   |
+| content | String |
