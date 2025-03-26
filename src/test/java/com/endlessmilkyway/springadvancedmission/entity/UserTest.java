@@ -187,6 +187,42 @@ class UserTest {
         checkViolationCount(violations);
     }
 
+    @DisplayName("이메일이 null일 경우 검증에 실패한다.")
+    @Test
+    void validFailOccurredWhenEmailIsNull() {
+        User user = new User("test01", "@As12345678", "김철수", "010-1234-5678", null);
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        printViolations(violations);
+
+        // @NotBlank 미준수
+        checkViolationCount(violations);
+    }
+
+    @DisplayName("이메일이 공백일 경우 검증에 실패한다.")
+    @Test
+    void validFailOccurredWhenEmailIsBlank() {
+        User user = new User("test01", "@As12345678", "김철수", "010-1234-5678", "");
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        printViolations(violations);
+
+        // @NotBlank 미준수
+        checkViolationCount(violations);
+    }
+
+    @DisplayName("이메일 형식을 준수하지 않을 경우 검증에 실패한다.")
+    @Test
+    void validFailOccurredWhenEmailDoesNotFollowRule() {
+        User user = new User("test01", "@As12345678", "김철수", "010-1234-5678", "asdfqwerty");
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        printViolations(violations);
+
+        // @NotBlank 미준수
+        checkViolationCount(violations);
+    }
+
     private void printViolations(Set<ConstraintViolation<User>> violations) {
         violations.forEach(violation -> System.out.println(violation.getMessage()));
     }
