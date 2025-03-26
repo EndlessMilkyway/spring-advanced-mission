@@ -21,7 +21,7 @@ class UserTest {
 
     @DisplayName("아이디가 Null이면 검증에 실패한다.")
     @Test
-    void exceptionOccurredWhenIsIdNull() {
+    void validFailOccurredWhenIsIdNull() {
         User user = new User(null, "@As12345678", "김철수", "010-1234-5678", "kcs0123@gmail.com");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
@@ -33,7 +33,7 @@ class UserTest {
 
     @DisplayName("아이디가 공백이면 검증에 실패한다.")
     @Test
-    void exceptionOccurredWhenIsIdBlank() {
+    void validFailOccurredWhenIsIdBlank() {
         User user = new User(" ", "@As12345678", "김철수", "010-1234-5678", "kcs0123@gmail.com");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
@@ -45,7 +45,7 @@ class UserTest {
 
     @DisplayName("아이디 길이가 6미만이면 검증에 실패한다.")
     @Test
-    void exceptionOccurredWhenIdLengthLessThanSix() {
+    void validFailOccurredWhenIdLengthLessThanSix() {
         User user = new User("test1", "@As12345678", "김철수", "010-1234-5678", "kcs0123@gmail.com");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
@@ -57,7 +57,7 @@ class UserTest {
 
     @DisplayName("비밀번호가 null이면 검증에 실패한다.")
     @Test
-    void exceptionOccurredWhenPasswordIsNull() {
+    void validFailOccurredWhenPasswordIsNull() {
         User user = new User("test01", null, "김철수", "010-1234-5678", "kcs0123@gmail.com");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
@@ -69,7 +69,7 @@ class UserTest {
 
     @DisplayName("비밀번호가 공백이면 검증에 실패한다.")
     @Test
-    void exceptionOccurredWhenPasswordIsBlank() {
+    void validFailOccurredWhenPasswordIsBlank() {
         User user = new User("test01", " ", "김철수", "010-1234-5678", "kcs0123@gmail.com");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
@@ -81,7 +81,7 @@ class UserTest {
 
     @DisplayName("비밀번호 작성 규칙을 지키지 않았을 경우 검증에 실패한다.")
     @Test
-    void exceptionOccurredWhenPasswordDoesNotFollowRule() {
+    void validFailOccurredWhenPasswordDoesNotFollowRule() {
         User user = new User("test01", "asdfqwer1234", "김철수", "010-1234-5678", "kcs0123@gmail.com");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
@@ -93,7 +93,7 @@ class UserTest {
 
     @DisplayName("비밀번호 길이가 10미만이면 검증에 실패한다.")
     @Test
-    void exceptionOccurredWhenPasswordLengthLessThanTen() {
+    void validFailOccurredWhenPasswordLengthLessThanTen() {
         User user = new User("test01", "@1Asd123", "김철수", "010-1234-5678", "kcs0123@gmail.com");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
@@ -105,7 +105,7 @@ class UserTest {
 
     @DisplayName("비밀번호 길이가 20초과이면 검증에 실패한다.")
     @Test
-    void exceptionOccurredWhenPasswordLengthMoreThanTwenty() {
+    void validFailOccurredWhenPasswordLengthMoreThanTwenty() {
         User user = new User("test01", "@Asdfqwer12345678!#987", "김철수", "010-1234-5678", "kcs0123@gmail.com");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
@@ -116,7 +116,8 @@ class UserTest {
     }
 
     @DisplayName("이름이 null인 경우 검증에 실패한다.")
-    void exceptionOccurredWhenNameIsNull() {
+    @Test
+    void validFailOccurredWhenNameIsNull() {
         User user = new User("test01", "@As12345678", null, "010-1234-5678", "kcs0123@gmail.com");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
@@ -128,7 +129,7 @@ class UserTest {
 
     @DisplayName("이름이 공백인 경우 검증에 실패한다.")
     @Test
-    void exceptionOccurredWhenNameIsBlank() {
+    void validFailOccurredWhenNameIsBlank() {
         User user = new User("test01", "@As12345678", " ", "010-1234-5678", "kcs0123@gmail.com");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
