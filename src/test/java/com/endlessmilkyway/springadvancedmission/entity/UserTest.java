@@ -25,10 +25,10 @@ class UserTest {
         User user = new User(null, "@As12345678", "김철수", "010-1234-5678", "kcs0123@gmail.com");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
-        violations.forEach(violation -> System.out.println(violation.getMessage()));
+        printViolations(violations);
 
         // @NotEmpty 미준수
-        assertThat(violations.size()).isEqualTo(1);
+        checkViolationCount(violations);
     }
 
     @DisplayName("아이디가 공백이면 검증에 실패한다.")
@@ -37,10 +37,10 @@ class UserTest {
         User user = new User(" ", "@As12345678", "김철수", "010-1234-5678", "kcs0123@gmail.com");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
-        violations.forEach(violation -> System.out.println(violation.getMessage()));
+        printViolations(violations);
 
         // @NotEmpty 미준수
-        assertThat(violations.size()).isEqualTo(1);
+        checkViolationCount(violations);
     }
 
     @DisplayName("아이디 길이가 6미만이면 검증에 실패한다.")
@@ -49,9 +49,77 @@ class UserTest {
         User user = new User("test1", "@As12345678", "김철수", "010-1234-5678", "kcs0123@gmail.com");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
-        violations.forEach(violation -> System.out.println(violation.getMessage()));
+        printViolations(violations);
 
         // @Size 미준수
+        checkViolationCount(violations);
+    }
+
+    @DisplayName("비밀번호가 null이면 검증에 실패한다.")
+    @Test
+    void exceptionOccurredWhenPasswordIsNull() {
+        User user = new User("test01", null, "김철수", "010-1234-5678", "kcs0123@gmail.com");
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        printViolations(violations);
+
+        // @NotBlank 미준수
+        checkViolationCount(violations);
+    }
+
+    @DisplayName("비밀번호가 공백이면 검증에 실패한다.")
+    @Test
+    void exceptionOccurredWhenPasswordIsBlank() {
+        User user = new User("test01", " ", "김철수", "010-1234-5678", "kcs0123@gmail.com");
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        printViolations(violations);
+
+        // @NotBlank 미준수
+        checkViolationCount(violations);
+    }
+
+    @DisplayName("비밀번호 작성 규칙을 지키지 않았을 경우 검증에 실패한다.")
+    @Test
+    void exceptionOccurredWhenPasswordDoesNotFollowRule() {
+        User user = new User("test01", "asdfqwer1234", "김철수", "010-1234-5678", "kcs0123@gmail.com");
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        printViolations(violations);
+
+        // @NotBlank 미준수
+        checkViolationCount(violations);
+    }
+
+    @DisplayName("비밀번호 길이가 10미만이면 검증에 실패한다.")
+    @Test
+    void exceptionOccurredWhenPasswordLengthLessThanTen() {
+        User user = new User("test01", "@1Asd123", "김철수", "010-1234-5678", "kcs0123@gmail.com");
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        printViolations(violations);
+
+        // @NotBlank 미준수
+        checkViolationCount(violations);
+    }
+
+    @DisplayName("비밀번호 길이가 20초과이면 검증에 실패한다.")
+    @Test
+    void exceptionOccurredWhenPasswordLengthMoreThanTwenty() {
+        User user = new User("test01", "@Asdfqwer12345678!#987", "김철수", "010-1234-5678", "kcs0123@gmail.com");
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        printViolations(violations);
+
+        // @NotBlank 미준수
+        checkViolationCount(violations);
+    }
+
+    private void printViolations(Set<ConstraintViolation<User>> violations) {
+        violations.forEach(violation -> System.out.println(violation.getMessage()));
+    }
+
+    private void checkViolationCount(Set<ConstraintViolation<User>> violations) {
         assertThat(violations.size()).isEqualTo(1);
     }
 }
