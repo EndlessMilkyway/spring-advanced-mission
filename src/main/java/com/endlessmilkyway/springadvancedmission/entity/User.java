@@ -3,6 +3,7 @@ package com.endlessmilkyway.springadvancedmission.entity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ public class User {
     @Size(min = 6, message = "아이디는 6글자 이상 입력해야 합니다!")
     private String id;
 
-    @NotBlank(message = "비밀번호는 공백일 수 없습니다!")
+    @NotNull
     @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])(?=.*[!@#$%^&*()-+=]).{10,20}$", message = "비밀번호 형식이 올바르지 않습니다! 8자리 이상, 대소문자 포함, 숫자 및 특수문자 포함(!@#%^&*()-+=)")
     private String pw;
 
