@@ -150,6 +150,42 @@ class UserTest {
         checkViolationCount(violations);
     }
 
+    @DisplayName("전화번호가 null일 경우 검증에 실패한다.")
+    @Test
+    void validFailOccurredWhenPhoneNumberIsNull() {
+        User user = new User("test01", "@As12345678", "김철수", null, "kcs0123@gmail.com");
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        printViolations(violations);
+
+        // @NotBlank 미준수
+        checkViolationCount(violations);
+    }
+
+    @DisplayName("전화번호가 공백일 경우 검증에 실패한다.")
+    @Test
+    void validFailOccurredWhenPhoneNumberIsBlank() {
+        User user = new User("test01", "@As12345678", "김철수", " ", "kcs0123@gmail.com");
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        printViolations(violations);
+
+        // @NotBlank 미준수
+        checkViolationCount(violations);
+    }
+
+    @DisplayName("전화번호 형식을 준수하지 않을 경우 검증에 실패한다.")
+    @Test
+    void validFailOccurredWhenPhoneNumberDoesNotFollowRule() {
+        User user = new User("test01", "@As12345678", "김철수", "asdfqwerty", "kcs0123@gmail.com");
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        printViolations(violations);
+
+        // @NotBlank 미준수
+        checkViolationCount(violations);
+    }
+
     private void printViolations(Set<ConstraintViolation<User>> violations) {
         violations.forEach(violation -> System.out.println(violation.getMessage()));
     }
