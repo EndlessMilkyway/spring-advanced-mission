@@ -242,3 +242,9 @@
 | author  | Null, "", " " 불가 |
 | created | Null 불가          |
 | content |                    |
+
+# 테이블 설계 - ER 다이어그램
+
+## ![ERD](./doc-img/ERD.png)
+
+- 우선 자바 Collections 프레임워크를 이용해 메모리 저장소를 구현하고 가능하다면 DB 연동까지 해보는 것이 목표
