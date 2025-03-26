@@ -115,6 +115,41 @@ class UserTest {
         checkViolationCount(violations);
     }
 
+    @DisplayName("이름이 null인 경우 검증에 실패한다.")
+    void exceptionOccurredWhenNameIsNull() {
+        User user = new User("test01", "@As12345678", null, "010-1234-5678", "kcs0123@gmail.com");
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        printViolations(violations);
+
+        // @NotBlank 미준수
+        checkViolationCount(violations);
+    }
+
+    @DisplayName("이름이 공백인 경우 검증에 실패한다.")
+    @Test
+    void exceptionOccurredWhenNameIsBlank() {
+        User user = new User("test01", "@As12345678", " ", "010-1234-5678", "kcs0123@gmail.com");
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        printViolations(violations);
+
+        // @NotBlank 미준수
+        checkViolationCount(violations);
+    }
+
+    @DisplayName("이름이 한글이 아닐 경우 검증에 실패한다.")
+    @Test
+    void exceptionOccurredWhenNameIsNotKorean() {
+        User user = new User("test01", "@As12345678", "John Doe", "010-1234-5678", "kcs0123@gmail.com");
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        printViolations(violations);
+
+        // @NotBlank 미준수
+        checkViolationCount(violations);
+    }
+
     private void printViolations(Set<ConstraintViolation<User>> violations) {
         violations.forEach(violation -> System.out.println(violation.getMessage()));
     }
