@@ -1,33 +1,88 @@
 package com.endlessmilkyway.springadvancedmission.entity;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
 public class User {
 
-    @NotEmpty(message = "아이디는 공백일 수 없습니다!")
-    @Size(min = 6, message = "아이디는 6글자 이상 입력해야 합니다!")
-    private String id;
+    public User() {
+    }
 
-    @NotNull(message = "비밀번호 값이 제대로 들어오지 않았습니다!")
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])(?=.*[!@#$%^&*()-+=]).{10,20}$", message = "비밀번호 형식이 올바르지 않습니다! 8자리 이상, 대소문자 포함, 숫자 및 특수문자 포함(!@#%^&*()-+=)")
-    private String pw;
+    public User(Long id, String userId, String pwd, String name, String phone, String email) {
+        this.id = id;
+        this.userId = userId;
+        this.pwd = pwd;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+    }
 
-    @NotNull(message = "이름값이 제대로 들어오지 않았습니다!")
-    @Pattern(regexp = "^[가-힣]+$", message = "이름은 한글만 입력 가능합니다!")
+    private Long id;
+
+    private String userId;
+
+    private String pwd;
+
     private String name;
 
-    @NotNull(message = "전화번호 값이 제대로 들어오지 않았습니다!")
-    @Pattern(regexp = "^01(?:0|1|[6-9])-\\d{3,4}-\\d{4}$", message = "전화번호 형식이 올바르지 않습니다!")
     private String phone;
 
-    @NotBlank(message = "이메일 값이 제대로 들어오지 않았습니다!")
-    @Email(message = "이메일 형식이 올바르지 않습니다!")
     private String email;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
