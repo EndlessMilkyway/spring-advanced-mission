@@ -1,5 +1,6 @@
 package com.endlessmilkyway.springadvancedmission.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Post {
@@ -7,13 +8,13 @@ public class Post {
     private Long id;
     private String title;
     private String author;
-    private Date created;
+    private LocalDate created;
     private String content;
 
     protected Post() {
     }
 
-    public Post(String title, String author, Date created, String content) {
+    public Post(String title, String author, LocalDate created, String content) {
         this.title = title;
         this.author = author;
         this.created = created;
@@ -44,11 +45,11 @@ public class Post {
         this.author = author;
     }
 
-    public Date getCreated() {
+    public LocalDate getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDate created) {
         this.created = created;
     }
 

@@ -3,6 +3,7 @@ package com.endlessmilkyway.springadvancedmission.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class PostDto {
@@ -15,7 +16,7 @@ public class PostDto {
 
     @NotNull(message = "작성일은 null일 수 없습니다!")
     @PastOrPresent
-    private Date created;
+    private LocalDate created;
 
     @NotNull(message = "본문 내용은 null일 수 없습니다!")
     private String content;
@@ -23,7 +24,7 @@ public class PostDto {
     public PostDto() {
     }
 
-    public PostDto(String title, String author, Date created, String content) {
+    public PostDto(String title, String author, LocalDate created, String content) {
         this.title = title;
         this.author = author;
         this.created = created;
@@ -46,11 +47,11 @@ public class PostDto {
         this.author = author;
     }
 
-    public Date getCreated() {
+    public LocalDate getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDate created) {
         this.created = created;
     }
 
