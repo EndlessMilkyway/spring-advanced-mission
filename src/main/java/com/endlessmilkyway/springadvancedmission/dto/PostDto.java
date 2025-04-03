@@ -1,27 +1,31 @@
-package com.endlessmilkyway.springadvancedmission.entity;
+package com.endlessmilkyway.springadvancedmission.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.util.Date;
 
-public class Post {
+public class PostDto {
 
-    public Post() {
+    public PostDto() {
     }
 
-    public Post(String title, String author, Date created, String content) {
+    public PostDto(String title, String author, Date created, String content) {
         this.title = title;
         this.author = author;
         this.created = created;
         this.content = content;
     }
 
-    private Long id;
-
+    @NotBlank(message = "제목은 공백일 수 없습니다!")
     private String title;
 
+    @NotBlank(message = "저자는 공백일 수 없습니다!")
     private String author;
 
+    @NotNull(message = "작성일은 null일 수 없습니다!")
     private Date created;
 
+    @NotNull(message = "본문 내용은 null일 수 없습니다!")
     private String content;
 
     public String getTitle() {
@@ -58,7 +62,7 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" +
+        return "PostDto{" +
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", created=" + created +
