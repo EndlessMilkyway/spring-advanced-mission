@@ -2,6 +2,13 @@ package com.endlessmilkyway.springadvancedmission.entity;
 
 public class User {
 
+    private Long id;
+    private String userId;
+    private String pwd;
+    private String name;
+    private String phone;
+    private String email;
+
     public User() {
     }
 
@@ -13,18 +20,6 @@ public class User {
         this.phone = phone;
         this.email = email;
     }
-
-    private Long id;
-
-    private String userId;
-
-    private String pwd;
-
-    private String name;
-
-    private String phone;
-
-    private String email;
 
     public Long getId() {
         return id;

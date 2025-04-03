@@ -4,6 +4,12 @@ import java.util.Date;
 
 public class Post {
 
+    private Long id;
+    private String title;
+    private String author;
+    private Date created;
+    private String content;
+
     public Post() {
     }
 
@@ -14,15 +20,13 @@ public class Post {
         this.content = content;
     }
 
-    private Long id;
+    public Long getId() {
+        return id;
+    }
 
-    private String title;
-
-    private String author;
-
-    private Date created;
-
-    private String content;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

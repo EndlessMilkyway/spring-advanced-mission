@@ -2,9 +2,23 @@ package com.endlessmilkyway.springadvancedmission.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import java.util.Date;
 
 public class PostDto {
+
+    @NotBlank(message = "제목은 공백일 수 없습니다!")
+    private String title;
+
+    @NotBlank(message = "저자는 공백일 수 없습니다!")
+    private String author;
+
+    @NotNull(message = "작성일은 null일 수 없습니다!")
+    @PastOrPresent
+    private Date created;
+
+    @NotNull(message = "본문 내용은 null일 수 없습니다!")
+    private String content;
 
     public PostDto() {
     }
@@ -15,18 +29,6 @@ public class PostDto {
         this.created = created;
         this.content = content;
     }
-
-    @NotBlank(message = "제목은 공백일 수 없습니다!")
-    private String title;
-
-    @NotBlank(message = "저자는 공백일 수 없습니다!")
-    private String author;
-
-    @NotNull(message = "작성일은 null일 수 없습니다!")
-    private Date created;
-
-    @NotNull(message = "본문 내용은 null일 수 없습니다!")
-    private String content;
 
     public String getTitle() {
         return title;
