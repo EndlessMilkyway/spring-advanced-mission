@@ -9,7 +9,7 @@ public class User {
     private String phone;
     private String email;
 
-    public User() {
+    protected User() {
     }
 
     public User(Long id, String userId, String pwd, String name, String phone, String email) {

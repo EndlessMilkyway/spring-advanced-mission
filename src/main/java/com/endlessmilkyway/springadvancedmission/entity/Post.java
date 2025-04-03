@@ -10,7 +10,7 @@ public class Post {
     private Date created;
     private String content;
 
-    public Post() {
+    protected Post() {
     }
 
     public Post(String title, String author, Date created, String content) {
